@@ -1,7 +1,5 @@
-import 'package:e_commerce/core/app_colors.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/custom_text_field.dart';
 import 'custom_login_card.dart';
 
 class LoginViewBody extends StatelessWidget {
@@ -11,6 +9,9 @@ class LoginViewBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        SizedBox(
+          height: 50,
+        ),
         Text(
           'Welcome To Our Market',
           style: TextStyle(
@@ -18,8 +19,10 @@ class LoginViewBody extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        SizedBox(
+          height: 30,
+        ),
         CustomLoginCard(),
-      
       ],
     );
   }
