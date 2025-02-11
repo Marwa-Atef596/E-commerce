@@ -1,3 +1,4 @@
+import 'package:e_commerce/view/home/widget/login_view_body.dart';
 import 'package:flutter/material.dart';
 
 class LoginView extends StatelessWidget {
@@ -5,6 +6,10 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: SafeArea(
+        child: LoginViewBody(),
+      ),
+    );
   }
 }
