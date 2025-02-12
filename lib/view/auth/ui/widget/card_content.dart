@@ -1,11 +1,14 @@
+import 'package:e_commerce/view/auth/ui/forget_view.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/custom_text_field.dart';
+import '../../../../core/custom_text_field.dart';
+import '../../../../core/functions/navigate_to.dart';
 import 'custom_login_text.dart';
 import 'custom_sign_card.dart';
+import 'custom_text_row.dart';
 
-class CardContent extends StatelessWidget {
-  const CardContent({
+class CardLoginContent extends StatelessWidget {
+  const CardLoginContent({
     super.key,
   });
 
@@ -29,6 +32,9 @@ class CardContent extends StatelessWidget {
           Align(
             alignment: AlignmentDirectional.centerEnd,
             child: CustomLoginText(
+              onTap: () {
+                navigateTo(context,ForgetView());
+              },
               text: 'Forget Password',
             ),
           ),
@@ -38,6 +44,10 @@ class CardContent extends StatelessWidget {
           CustomSignCard(
             txt: 'Login',
             onPressed: () {},
+            child: Icon(
+              Icons.arrow_forward,
+              color: Colors.white,
+            ),
           ),
           SizedBox(
             height: 20,
@@ -45,25 +55,18 @@ class CardContent extends StatelessWidget {
           CustomSignCard(
             txt: 'Login With Google',
             onPressed: () {},
+            child: Icon(
+              Icons.arrow_forward,
+              color: Colors.white,
+            ),
           ),
           SizedBox(
             height: 20,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Already have account ? ',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              CustomLoginText(text: 'Sign Up')
-            ],
-          )
+          CustomTextRow()
         ],
       ),
     );
   }
+
 }

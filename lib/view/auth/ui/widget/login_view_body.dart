@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'card_content.dart';
 import 'custom_login_card.dart';
 
 class LoginViewBody extends StatelessWidget {
@@ -22,7 +23,9 @@ class LoginViewBody extends StatelessWidget {
         SizedBox(
           height: 30,
         ),
-        CustomLoginCard(),
+        CustomLoginCard(
+          child: CardLoginContent(),
+        ),
       ],
     );
   }

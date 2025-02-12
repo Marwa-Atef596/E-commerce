@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/app_colors.dart';
+import '../../../../core/custom_button.dart';
+
 
 class CustomSignCard extends StatelessWidget {
   const CustomSignCard({
     super.key,
     required this.txt,
-    this.onPressed,
+    this.onPressed, this.child,
   });
   final String txt;
   final void Function()? onPressed;
+  final Widget? child;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,18 +24,7 @@ class CustomSignCard extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-            backgroundColor: AppColors.kPrimaryColor,
-          ),
-          onPressed: onPressed,
-          child: Icon(
-            Icons.arrow_forward,
-            color: Colors.white,
-          ),
-        )
+        CustomButton(onPressed: onPressed,child:child)
       ],
     );
   }
