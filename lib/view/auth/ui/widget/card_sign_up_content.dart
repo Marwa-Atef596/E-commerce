@@ -1,23 +1,23 @@
-import 'package:e_commerce/view/auth/ui/forget_view.dart';
-import 'package:e_commerce/view/auth/ui/sign_up_view.dart';
+import 'package:e_commerce/view/auth/ui/login_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/custom_text_field.dart';
 import '../../../../core/functions/navigate_to.dart';
-import 'custom_login_text.dart';
 import 'custom_sign_card.dart';
 import 'custom_text_row.dart';
 
-class CardLoginContent extends StatelessWidget {
-  const CardLoginContent({
-    super.key,
-  });
+class CardSignUpContent extends StatelessWidget {
+  const CardSignUpContent({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         children: [
+          CustomTextFormField(label: 'Name'),
+          SizedBox(
+            height: 20,
+          ),
           CustomTextFormField(label: 'Email'),
           SizedBox(
             height: 20,
@@ -30,20 +30,11 @@ class CardLoginContent extends StatelessWidget {
           SizedBox(
             height: 8,
           ),
-          Align(
-            alignment: AlignmentDirectional.centerEnd,
-            child: CustomLoginText(
-              onTap: () {
-                navigateTo(context, ForgetView());
-              },
-              text: 'Forget Password',
-            ),
-          ),
           SizedBox(
             height: 20,
           ),
           CustomSignCard(
-            txt: 'Login',
+            txt: 'Sign Up',
             onPressed: () {},
             child: Icon(
               Icons.arrow_forward,
@@ -54,7 +45,7 @@ class CardLoginContent extends StatelessWidget {
             height: 20,
           ),
           CustomSignCard(
-            txt: 'Login With Google',
+            txt: 'Sign Up With Google',
             onPressed: () {},
             child: Icon(
               Icons.arrow_forward,
@@ -65,13 +56,10 @@ class CardLoginContent extends StatelessWidget {
             height: 20,
           ),
           CustomTextRow(
-            title: 'Don\'t have account ? ',
-            text: 'Sign Up',
+            title: 'Already have account ? ',
+            text: 'Login',
             onTap: () {
-              navigateTo(
-                context,
-                SignUpView(),
-              );
+              navigateTo(context, LoginView());
             },
           )
         ],
