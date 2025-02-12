@@ -1,5 +1,6 @@
 import 'package:e_commerce/view/auth/ui/forget_view.dart';
 import 'package:e_commerce/view/auth/ui/sign_up_view.dart';
+import 'package:e_commerce/view/nav_bar/ui/main_home_view.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/custom_text_field.dart';
@@ -44,7 +45,9 @@ class CardLoginContent extends StatelessWidget {
           ),
           CustomSignCard(
             txt: 'Login',
-            onPressed: () {},
+            onPressed: () {
+              navigateTo(context, MainHomeView());
+            },
             child: Icon(
               Icons.arrow_forward,
               color: Colors.white,
