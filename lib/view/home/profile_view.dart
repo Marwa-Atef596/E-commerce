@@ -1,7 +1,9 @@
 import 'package:e_commerce/core/app_colors.dart';
+import 'package:e_commerce/core/functions/navigate_to.dart';
 import 'package:e_commerce/view/auth/ui/widget/custom_login_card.dart';
 import 'package:flutter/material.dart';
 
+import 'edit_name_view.dart';
 import 'widget/CustomProfileCard.dart';
 
 class ProfileView extends StatelessWidget {
@@ -45,7 +47,9 @@ class ProfileView extends StatelessWidget {
               CustomProfileCard(
                 iconData: Icons.person,
                 text: 'Edit Name',
-                onTap: () {},
+                onTap: () {
+                  navigateTo(context, EditNameView());
+                },
               ),
               SizedBox(
                 height: 15,
