@@ -7,14 +7,16 @@ import 'CustomProgressIndicator.dart';
 
 class CustomCachedNetworkImage extends StatelessWidget {
   const CustomCachedNetworkImage({
-    super.key, required this.url,
+    super.key,
+    required this.url,
   });
   final String url;
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
-      imageUrl:
-          url,
+      // height: 250,
+      width: double.infinity,
+      imageUrl: url,
       placeholder: (context, url) => SizedBox(
         height: 200,
         child: CustomProgressIndicator(),
