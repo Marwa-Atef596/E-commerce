@@ -1,6 +1,7 @@
 import 'package:e_commerce/core/app_colors.dart';
 import 'package:e_commerce/core/functions/navigate_to.dart';
 import 'package:e_commerce/view/auth/ui/widget/custom_login_card.dart';
+import 'package:e_commerce/view/home/my_orders.dart';
 import 'package:flutter/material.dart';
 
 import 'edit_name_view.dart';
@@ -57,7 +58,12 @@ class ProfileView extends StatelessWidget {
               CustomProfileCard(
                 iconData: Icons.shopping_basket,
                 text: 'My Orders',
-                onTap: () {},
+                onTap: () {
+                  navigateTo(
+                    context,
+                    MyOrders(),
+                  );
+                },
               ),
               SizedBox(
                 height: 15,
