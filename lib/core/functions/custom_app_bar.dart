@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 
 import '../app_colors.dart';
 
-AppBar CustomAppBar(BuildContext context) {
+AppBar CustomAppBar(BuildContext context,String text) {
+  
   return AppBar(
     backgroundColor: AppColors.kPrimaryColor,
     title: Text(
-      'Edit Name',
+      text,
       style: TextStyle(
         color: AppColors.kWhiteColor,
       ),
