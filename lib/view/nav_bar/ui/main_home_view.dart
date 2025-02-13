@@ -23,9 +23,11 @@ class MainHomeView extends StatelessWidget {
       child: BlocBuilder<NavBarCubit, NavBarState>(
         builder: (context, state) {
           NavBarCubit cubit = BlocProvider.of<NavBarCubit>(context);
-          return Scaffold(
-            body: views[cubit.currentIndex],
-            bottomNavigationBar: CustomBottomNavigationBar(),
+          return SafeArea(
+            child: Scaffold(
+              body: views[cubit.currentIndex],
+              bottomNavigationBar: CustomBottomNavigationBar(),
+            ),
           );
         },
       ),
