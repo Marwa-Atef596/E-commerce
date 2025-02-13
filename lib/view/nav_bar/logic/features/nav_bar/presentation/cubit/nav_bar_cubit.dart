@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names, depend_on_referenced_packages
+
 import 'package:bloc/bloc.dart';
 
 part 'nav_bar_state.dart';
