@@ -8,25 +8,27 @@ class LoginViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 50,
-        ),
-        Text(
-          'Welcome To Our Market',
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          SizedBox(
+            height: 50,
           ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-        CustomLoginCard(
-          child: CardLoginContent(),
-        ),
-      ],
+          Text(
+            'Welcome To Our Market',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          CustomLoginCard(
+            child: CardLoginContent(),
+          ),
+        ],
+      ),
     );
   }
 }
