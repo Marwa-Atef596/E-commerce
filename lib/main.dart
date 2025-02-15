@@ -1,5 +1,6 @@
 import 'package:e_commerce/core/app_colors.dart';
 import 'package:e_commerce/core/keys.dart';
+import 'package:e_commerce/core/my_observer.dart';
 import 'package:e_commerce/view/auth/logic/features/authentication/presentation/cubit/authentication_cubit.dart';
 import 'package:e_commerce/view/auth/ui/login_view.dart';
 import 'package:e_commerce/view/nav_bar/ui/main_home_view.dart';
@@ -14,6 +15,7 @@ Future<void> main() async {
     url: Keys.url,
     anonKey: Keys.anonKey,
   );
+  Bloc.observer = MyObserver();
   runApp(const OurMarket());
 }
 
@@ -27,12 +29,13 @@ class OurMarket extends StatelessWidget {
     return BlocProvider(
       create: (context) => AuthenticationCubit(),
       child: MaterialApp(
-        theme: ThemeData(
-          scaffoldBackgroundColor: AppColors.kScaffoldColor,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: client.auth.currentUser != null ? MainHomeView() : LoginView(),
-      ),
+          theme: ThemeData(
+            scaffoldBackgroundColor: AppColors.kScaffoldColor,
+          ),
+          debugShowCheckedModeBanner: false,
+          home: LoginView()
+          // client.auth.currentUser != null ? MainHomeView() : LoginView(),
+          ),
     );
   }
 }

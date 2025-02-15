@@ -23,3 +23,13 @@ class SignUpFailure extends AuthenticationState {
 
   SignUpFailure({required this.errMessage});
 }
+
+class GoogleSignInSuccess extends AuthenticationState {}
+
+class GoogleSignInLoading extends AuthenticationState {}
+
+class GoogleSignInFailure extends AuthenticationState {
+  // final String errMessage;
+
+  // GoogleSignInFailure({required this.errMessage});
+}

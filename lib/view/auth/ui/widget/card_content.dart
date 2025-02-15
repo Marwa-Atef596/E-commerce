@@ -37,7 +37,7 @@ class _CardLoginContentState extends State<CardLoginContent> {
   Widget build(BuildContext context) {
     return BlocConsumer<AuthenticationCubit, AuthenticationState>(
       listener: (context, state) {
-        if (state is LoginSuccess) {
+        if (state is LoginSuccess || state is GoogleSignInSuccess) {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
@@ -112,7 +112,7 @@ class _CardLoginContentState extends State<CardLoginContent> {
               ),
               CustomSignCard(
                 txt: 'Login With Google',
-                onPressed: () {},
+                onPressed: () => cubit.googleSignIn(),
                 child: Icon(
                   Icons.arrow_forward,
                   color: Colors.white,
