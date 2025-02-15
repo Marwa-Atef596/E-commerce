@@ -22,7 +22,7 @@ class _CardSignUpContentState extends State<CardSignUpContent> {
   final TextEditingController _emailEditingController = TextEditingController();
   final TextEditingController _passEditingController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  bool isPassHiddin = true;
   @override
   void dispose() {
     _nameEditingController.dispose();
@@ -73,8 +73,16 @@ class _CardSignUpContentState extends State<CardSignUpContent> {
               CustomTextFormField(
                 label: 'Password',
                 controller: _passEditingController,
-                SUFFIX: Icon(Icons.visibility_off),
-                obscureText: true,
+                SUFFIX: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isPassHiddin = !isPassHiddin;
+                    });
+                  },
+                  icon: Icon(
+                      isPassHiddin ? Icons.visibility_off : Icons.visibility),
+                ),
+                obscureText: isPassHiddin,
               ),
               SizedBox(
                 height: 8,

@@ -25,6 +25,7 @@ class _CardLoginContentState extends State<CardLoginContent> {
   final TextEditingController _emailEditingController = TextEditingController();
   final TextEditingController _passEditingController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  bool isPassHidden = true;
   @override
   void dispose() {
     _emailEditingController.dispose();
@@ -65,8 +66,16 @@ class _CardLoginContentState extends State<CardLoginContent> {
               CustomTextFormField(
                 controller: _passEditingController,
                 label: 'Password',
-                SUFFIX: Icon(Icons.visibility_off),
-                obscureText: true,
+                SUFFIX: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isPassHidden = !isPassHidden;
+                    });
+                  },
+                  icon: Icon(
+                      isPassHidden ? Icons.visibility_off : Icons.visibility),
+                ),
+                obscureText: isPassHidden,
               ),
               SizedBox(
                 height: 8,
