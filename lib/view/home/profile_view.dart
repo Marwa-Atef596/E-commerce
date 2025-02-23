@@ -1,7 +1,10 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:e_commerce/core/app_colors.dart';
 import 'package:e_commerce/core/functions/navigate_to.dart';
 import 'package:e_commerce/core/functions/push_replacement.dart';
 import 'package:e_commerce/view/auth/logic/features/authentication/presentation/cubit/authentication_cubit.dart';
+import 'package:e_commerce/view/auth/logic/model/user_data_model.dart';
 import 'package:e_commerce/view/auth/ui/widget/custom_login_card.dart';
 import 'package:e_commerce/view/home/my_orders.dart';
 import 'package:e_commerce/view/home/widget/CustomProgressIndicator.dart';
@@ -24,6 +27,7 @@ class ProfileView extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        UserDataModel? user = context.read<AuthenticationCubit>().userDataModel;
         return state is LogoutLoading
             ? CustomProgressIndicator()
             : Center(
@@ -46,7 +50,7 @@ class ProfileView extends StatelessWidget {
                           height: 20,
                         ),
                         Text(
-                          'Person Name',
+                          user?.name ?? 'Person Name',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
@@ -54,7 +58,7 @@ class ProfileView extends StatelessWidget {
                           height: 8,
                         ),
                         Text(
-                          'Person Email',
+                          user?.email ?? 'Person Email',
                           style: TextStyle(fontSize: 16),
                         ),
                         SizedBox(

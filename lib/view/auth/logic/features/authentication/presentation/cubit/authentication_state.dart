@@ -66,3 +66,10 @@ final class UserDataAddedFailure extends AuthenticationState {
   UserDataAddedFailure({required this.errMessage});
 
 }
+
+
+final class GetUserDataLoading extends AuthenticationState {}
+
+final class GetUserDataSuccess extends AuthenticationState {}
+
+final class GetUserDataError extends AuthenticationState {}
