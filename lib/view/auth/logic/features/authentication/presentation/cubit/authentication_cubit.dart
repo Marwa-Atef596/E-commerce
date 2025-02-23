@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
@@ -27,11 +28,18 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }
   }
 
-  Future<void> SignUP(
-      {required String name, required pass, required email}) async {
+  Future<void> SignUP({
+    required String name,
+    required pass,
+    required email,
+  }) async {
     emit(SignUpLoading());
     try {
-      await client.auth.signUp(password: pass, email: email);
+      await client.auth.signUp(
+        password: pass,
+        email: email,
+      );
+      await UserData(email: email, name: name);
       emit(SignUpSuccess());
     } on AuthException catch (e) {
       log(e.message);
@@ -42,7 +50,7 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
     }
   }
 
-  GoogleSignInAccount? googleSignInAccount;
+  GoogleSignInAccount? googleUser;
   Future<AuthResponse> googleSignIn() async {
     emit(GoogleSignInLoading());
     const webClientId =
@@ -70,7 +78,10 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       idToken: idToken,
       accessToken: accessToken,
     );
-
+    await UserData(
+      email: googleUser.email,
+      name: googleUser.displayName!,
+    );
     emit(GoogleSignInSuccess());
     return response;
   }
@@ -92,6 +103,26 @@ class AuthenticationCubit extends Cubit<AuthenticationState> {
       emit(ResetPasswordSuccess());
     } on Exception catch (e) {
       emit(ResetPasswordFailure(errMessage: e.toString()));
+    }
+  }
+
+  Future<void> UserData({required String email, required String name}) async {
+    emit(UserDataAddedLoading());
+    try {
+      await client.from('users').upsert(
+        {
+          'id': client.auth.currentUser!.id,
+          'name': name,
+          'email': email,
+        },
+      );
+      emit(UserDataAddedSuccess());
+    } catch (e) {
+      emit(
+        UserDataAddedFailure(
+          errMessage: e.toString(),
+        ),
+      );
     }
   }
 }

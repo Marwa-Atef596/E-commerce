@@ -54,3 +54,15 @@ class ResetPasswordFailure extends AuthenticationState{
   ResetPasswordFailure({required this.errMessage});
 
 }
+
+
+final class UserDataAddedLoading extends AuthenticationState {}
+
+final class UserDataAddedSuccess extends AuthenticationState {}
+
+final class UserDataAddedFailure extends AuthenticationState {
+  final String errMessage;
+
+  UserDataAddedFailure({required this.errMessage});
+
+}
