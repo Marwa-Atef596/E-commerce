@@ -33,3 +33,14 @@ class GoogleSignInFailure extends AuthenticationState {
 
   // GoogleSignInFailure({required this.errMessage});
 }
+
+
+class LogoutSuccess extends AuthenticationState {}
+
+class LogoutLoading extends AuthenticationState {}
+
+class LogoutFailure extends AuthenticationState {
+  final String errMessage;
+
+  LogoutFailure({required this.errMessage});
+}
