@@ -20,85 +20,89 @@ class ProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<AuthenticationCubit, AuthenticationState>(
-      listener: (context, state) {
-        if (state is LogoutSuccess) {
-          pushReplacement(context, LoginView());
-        }
-      },
-      builder: (context, state) {
-        UserDataModel? user = context.read<AuthenticationCubit>().userDataModel;
-        return state is LogoutLoading
-            ? CustomProgressIndicator()
-            : Center(
-                child: SizedBox(
-                  height: MediaQuery.sizeOf(context).height * .7,
-                  child: CustomLoginCard(
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: AppColors.kPrimaryColor,
-                          foregroundColor: AppColors.kWhiteColor,
-                          radius: 50,
-                          child: Icon(
-                            Icons.person,
-                            size: 40,
-                            color: AppColors.kWhiteColor,
+    return BlocProvider(
+      create: (context) => AuthenticationCubit()..getUserData(),
+      child: BlocConsumer<AuthenticationCubit, AuthenticationState>(
+        listener: (context, state) {
+          if (state is LogoutSuccess) {
+            pushReplacement(context, LoginView());
+          }
+        },
+        builder: (context, state) {
+          UserDataModel? user =
+              context.read<AuthenticationCubit>().userDataModel;
+          return state is LogoutLoading || state is GetUserDataLoading
+              ? CustomProgressIndicator()
+              : Center(
+                  child: SizedBox(
+                    height: MediaQuery.sizeOf(context).height * .7,
+                    child: CustomLoginCard(
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            backgroundColor: AppColors.kPrimaryColor,
+                            foregroundColor: AppColors.kWhiteColor,
+                            radius: 50,
+                            child: Icon(
+                              Icons.person,
+                              size: 40,
+                              color: AppColors.kWhiteColor,
+                            ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Text(
-                          user?.name ?? 'Person Name',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Text(
-                          user?.email ?? 'Person Email',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        CustomProfileCard(
-                          iconData: Icons.person,
-                          text: 'Edit Name',
-                          onTap: () {
-                            navigateTo(context, EditNameView());
-                          },
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        CustomProfileCard(
-                          iconData: Icons.shopping_basket,
-                          text: 'My Orders',
-                          onTap: () {
-                            navigateTo(
-                              context,
-                              MyOrders(),
-                            );
-                          },
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        CustomProfileCard(
-                            iconData: Icons.logout,
-                            text: 'Log Out',
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Text(
+                            user?.name ?? 'Person Name',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 16),
+                          ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            user?.email ?? 'Person Email',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          CustomProfileCard(
+                            iconData: Icons.person,
+                            text: 'Edit Name',
                             onTap: () {
-                              context.read<AuthenticationCubit>().SignOut();
-                            }),
-                      ],
+                              navigateTo(context, EditNameView());
+                            },
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          CustomProfileCard(
+                            iconData: Icons.shopping_basket,
+                            text: 'My Orders',
+                            onTap: () {
+                              navigateTo(
+                                context,
+                                MyOrders(),
+                              );
+                            },
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          CustomProfileCard(
+                              iconData: Icons.logout,
+                              text: 'Log Out',
+                              onTap: () {
+                                context.read<AuthenticationCubit>().SignOut();
+                              }),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              );
-      },
+                );
+        },
+      ),
     );
   }
 }
