@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/custom_text_field.dart';
 import '../../../../core/functions/navigate_to.dart';
+import '../../../../core/functions/push_replacement.dart';
 import '../../../../core/functions/shoe_message.dart';
 import '../../../nav_bar/ui/main_home_view.dart';
 import 'custom_login_text.dart';
@@ -38,12 +39,7 @@ class _CardLoginContentState extends State<CardLoginContent> {
     return BlocConsumer<AuthenticationCubit, AuthenticationState>(
       listener: (context, state) {
         if (state is LoginSuccess || state is GoogleSignInSuccess) {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => MainHomeView(),
-            ),
-          );
+          pushReplacement(context,MainHomeView());
         }
         if (state is LoginFailure) {
           ShowMessage(context, state.errMessage);
@@ -137,4 +133,6 @@ class _CardLoginContentState extends State<CardLoginContent> {
       },
     );
   }
+
+
 }

@@ -29,13 +29,12 @@ class OurMarket extends StatelessWidget {
     return BlocProvider(
       create: (context) => AuthenticationCubit(),
       child: MaterialApp(
-          theme: ThemeData(
-            scaffoldBackgroundColor: AppColors.kScaffoldColor,
-          ),
-          debugShowCheckedModeBanner: false,
-          home: LoginView()
-          // client.auth.currentUser != null ? MainHomeView() : LoginView(),
-          ),
+        theme: ThemeData(
+          scaffoldBackgroundColor: AppColors.kScaffoldColor,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: client.auth.currentUser != null ? MainHomeView() : LoginView(),
+      ),
     );
   }
 }
