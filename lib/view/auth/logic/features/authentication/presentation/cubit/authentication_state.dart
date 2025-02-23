@@ -44,3 +44,13 @@ class LogoutFailure extends AuthenticationState {
 
   LogoutFailure({required this.errMessage});
 }
+
+
+class ResetPasswordSuccess extends AuthenticationState{}
+class ResetPasswordLoading extends AuthenticationState{}
+class ResetPasswordFailure extends AuthenticationState{
+  final String errMessage;
+
+  ResetPasswordFailure({required this.errMessage});
+
+}
